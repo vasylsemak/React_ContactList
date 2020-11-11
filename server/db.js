@@ -26,7 +26,4 @@ const Contact = db.define('contacts', {
   },
 });
 
-module.exports = {
-  db,
-  Contact,
-};
+module.exports = { db, Contact };
