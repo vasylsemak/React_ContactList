@@ -6,12 +6,27 @@ import ContactList from './ContactList';
 class Main extends Component {
   constructor() {
     super();
-    this.state = { contacts: [] };
+    this.state = { contacts: [], singleContact: {} };
+    this.getSingleContact = this.getSingleContact.bind(this);
   }
 
   async componentDidMount() {
-    const { data } = await axios.get('/api/contacts');
-    this.setState(() => ({ contacts: data }))
+    try {
+      const { data } = await axios.get('/api/contacts');
+      this.setState(() => ({ contacts: data }))
+    } catch (error) {
+      console.log('Can not get contacts from db, in ComponentDidMount');
+    }
+  }
+
+  async getSingleContact(contactId) {
+    try {
+      const { data } = await axios.get(`/api/contacts/${contactId}`)
+      console.log('---->', data);
+      this.setState({ singleContact: data });
+    } catch (error) {
+      console.log('Can not get single contact from db');
+    }
   }
 
   render() {
@@ -21,7 +36,10 @@ class Main extends Component {
           <div>Contact List</div>
         </div>
         <div id="container">
-          <ContactList contacts={this.state.contacts} />
+          <ContactList
+            contacts={this.state.contacts}
+            getContact={this.getSingleContact}
+          />
         </div>
       </div>
     );

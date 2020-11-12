@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactRow from './ContactRow';
 
-export default ({ contacts }) => (
+export default ({ contacts, getContact }) => (
   <table>
     <tbody>
       <tr>
@@ -9,7 +9,7 @@ export default ({ contacts }) => (
         <th>Phone</th>
         <th>Email</th>
       </tr>
-      <ContactRow contacts={contacts} />
+      <ContactRow contacts={contacts} getContact={getContact} />
     </tbody>
   </table>
 );
