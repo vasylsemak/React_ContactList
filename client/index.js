@@ -10,8 +10,9 @@ class Main extends Component {
     this.state = {
       contacts: [],
       singleContact: {}
-    };
+    }
     this.getSingleContact = this.getSingleContact.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
 
   async componentDidMount() {
@@ -32,6 +33,10 @@ class Main extends Component {
     }
   }
 
+  resetState() {
+    this.setState(() => ({ singleContact: {} }));
+  }
+
   render() {
     return (
       <div id="main">
@@ -40,7 +45,10 @@ class Main extends Component {
         </div>
         <div id="container">
           {this.state.singleContact.id ? (
-            <SingleContact contact={this.state.singleContact}/>
+            <SingleContact
+              contact={this.state.singleContact}
+              resetState={this.resetState}
+             />
           ) : (
             <ContactList
               contacts={this.state.contacts}

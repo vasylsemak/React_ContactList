@@ -43,6 +43,15 @@ body {
 
 #single-contact {
   display: flex;
+  flex-direction: column;
+}
+
+#single-contact button {
+  background-color: rgb(185, 184, 184);
+  border-radius: 5px;
+  height: 2.5rem;
+  font-size: 1.1rem;
+  margin-top: 2rem;
 }
 
 #contact-info {
