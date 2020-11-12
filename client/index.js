@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import ContactList from './ContactList';
 
 class Main extends Component {
   constructor() {
@@ -10,7 +11,6 @@ class Main extends Component {
 
   async componentDidMount() {
     const { data } = await axios.get('/api/contacts');
-    console.log('======>', data);
     this.setState(() => ({ contacts: data }))
   }
 
@@ -21,26 +21,7 @@ class Main extends Component {
           <div>Contact List</div>
         </div>
         <div id="container">
-            {
-              <table>
-                <tbody>
-                  <tr>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                  </tr>
-                  {
-                    this.state.contacts.map(c => (
-                      <tr key={c.id}>
-                        <td>{c.name}</td>
-                        <td>{c.phone}</td>
-                        <td>{c.email}</td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
-            }
+          <ContactList contacts={this.state.contacts} />
         </div>
       </div>
     );
