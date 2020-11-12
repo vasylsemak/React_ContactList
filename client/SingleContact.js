@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default (props) => (
+export default ({ contact }) => (
   <div id='single-contact'>
-    <img src={imageUrl} />
+    <img src={contact.imageUrl} />
     <div id='contact-info'>
-      <p>Name: {name}</p>
-      <p>Email: {email}</p>
-      <p>Phone: {phone}</p>
+      <p>Name: {contact.name}</p>
+      <p>Email: {contact.email}</p>
+      <p>Phone: {contact.phone}</p>
     </div>
   </div>
 );
