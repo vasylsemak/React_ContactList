@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static middleware
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/api/contacts', async (req, res, next) => {
   try {
@@ -47,8 +47,8 @@ app.put('/api/contacts/:contactId', async (req, res, next) => {
 
 // For all GET requests that aren't to an API route,
 // we will send the index.html!
-app.get('/*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
+app.get('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 // Handle 404s
@@ -69,13 +69,7 @@ app.use((err, req, res, next) => {
     await db.sync();
     console.log('The database is synced!');
     app.listen(PORT, () =>
-      console.log(`
-
-        Listening on port ${PORT}
-        http://localhost:3000/
-
-      `)
-    );
+      console.log(`Listening on port ${PORT} http://localhost:3000/`));
   } catch (err) {
     console.error(err);
   }
